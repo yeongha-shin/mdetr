@@ -162,6 +162,9 @@ def mdetr_resnet101_gqa(pretrained=False, return_postprocessor=False):
             map_location="cpu",
             check_hash=True,
         )
+        if "detr.transformer.text_encoder.embeddings.position_ids" in checkpoint["model"]:
+            del checkpoint["model"]["detr.transformer.text_encoder.embeddings.position_ids"]
+
         model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, PostProcess()
@@ -179,6 +182,8 @@ def mdetr_efficientnetB5_gqa(pretrained=False, return_postprocessor=False):
         checkpoint = torch.hub.load_state_dict_from_url(
             url="https://zenodo.org/record/4721981/files/gqa_EB5_checkpoint.pth", map_location="cpu", check_hash=True
         )
+        if "detr.transformer.text_encoder.embeddings.position_ids" in checkpoint["model"]:
+            del checkpoint["model"]["detr.transformer.text_encoder.embeddings.position_ids"]
         model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, PostProcess()
