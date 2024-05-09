@@ -4,7 +4,7 @@ import torch
 from models.backbone import Backbone, Joiner, TimmBackbone
 from models.mdetr import MDETR
 from models.position_encoding import PositionEmbeddingSine
-from models.postprocessors import PostProcess, PostProcessSegm
+from models.postprocessors import PostProcess, PostProcessSegmmdetr_efficientnetB3_phrasecut
 from models.segmentation import DETRsegm
 from models.transformer import Transformer
 
