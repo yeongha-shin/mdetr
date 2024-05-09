@@ -202,6 +202,10 @@ def mdetr_resnet101_phrasecut(pretrained=False, threshold=0.5, return_postproces
             map_location="cpu",
             check_hash=True,
         )
+
+        if "detr.transformer.text_encoder.embeddings.position_ids" in checkpoint["model"]:
+            del checkpoint["model"]["detr.transformer.text_encoder.embeddings.position_ids"]
+                    
         model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, [PostProcess(), PostProcessSegm(threshold=threshold)]
@@ -220,6 +224,9 @@ def mdetr_efficientnetB3_phrasecut(pretrained=False, threshold=0.5, return_postp
             map_location="cpu",
             check_hash=True,
         )
+        if "detr.transformer.text_encoder.embeddings.position_ids" in checkpoint["model"]:
+            del checkpoint["model"]["detr.transformer.text_encoder.embeddings.position_ids"]
+                    
         model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, [PostProcess(), PostProcessSegm(threshold=threshold)]
