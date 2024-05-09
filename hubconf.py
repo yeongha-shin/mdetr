@@ -179,7 +179,7 @@ def mdetr_efficientnetB5_gqa(pretrained=False, return_postprocessor=False):
         checkpoint = torch.hub.load_state_dict_from_url(
             url="https://zenodo.org/record/4721981/files/gqa_EB5_checkpoint.pth", map_location="cpu", check_hash=True
         )
-        model.load_state_dict(checkpoint["model"])
+        model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, PostProcess()
     return model
