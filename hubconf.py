@@ -107,7 +107,7 @@ def mdetr_efficientnetB5(pretrained=False, return_postprocessor=False):
             map_location="cpu",
             check_hash=True,
         )
-        model.load_state_dict(checkpoint["model"])
+        model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, PostProcess()
     return model
