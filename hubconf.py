@@ -215,7 +215,7 @@ def mdetr_efficientnetB3_phrasecut(pretrained=False, threshold=0.5, return_postp
             map_location="cpu",
             check_hash=True,
         )
-        model.load_state_dict(checkpoint["model"])
+        model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, [PostProcess(), PostProcessSegm(threshold=threshold)]
     return model
