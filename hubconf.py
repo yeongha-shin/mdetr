@@ -197,7 +197,7 @@ def mdetr_resnet101_phrasecut(pretrained=False, threshold=0.5, return_postproces
             map_location="cpu",
             check_hash=True,
         )
-        model.load_state_dict(checkpoint["model"], strict = False)
+        model.load_state_dict(checkpoint["model"], strict=False)
     if return_postprocessor:
         return model, [PostProcess(), PostProcessSegm(threshold=threshold)]
     return model
